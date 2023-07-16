@@ -54,4 +54,27 @@ void login()
     cout << "\t\t\t PASSWORD : ";
     cin >> passWord;
     
+    ifstream input("records.txt");  //  will upload the inputted username and password to "records.txt"
+
+    while(input >> id >> pass)      //
+    {
+        if(id == userId && pass == passWord)
+        {
+            count = 1;
+            system("cls");
+        }
+    }
+    input.close();
+    if(count == 1)
+    {
+        cout << userId << "\n Your LOGIN is successful \n Thanks for logging in! \n";
+        main();
+    }
+    else
+    {
+        cout << "\n LOGIN ERROR \n Please check your username and password \n";
+        main();
+    }
+
 }
+
