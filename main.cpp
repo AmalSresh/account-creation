@@ -10,9 +10,9 @@ void forgot();
 int main()
 {
     int choice;
-    cout << "\t\t\t____________________________________________________________________________\n\n\n";
-    cout << "\t\t\t                          Welcome to the Login page                      \n\n\n";
-    cout << "\t\t\t__________________________         MENU         ____________________________\n\n\n";
+    cout << "\t\t\t____________________________________________________________________________\n\n";
+    cout << "\t\t\t                          Welcome to the Login page                      \n\n";
+    cout << "\t\t\t__________________________         MENU         ____________________________\n\n";
     cout << "                                                                                   \n\n";
     cout << "\t | Press 1 to LOGIN                        |" << endl;
     cout << "\t | Press 2 to REGISTER                     |" << endl;
@@ -78,3 +78,65 @@ void login()
 
 }
 
+void registration()
+{
+    string ruserId, rpassWord, rid, rpass;
+    system("cls");
+    cout << "\t\t\t Enter the username: ";
+    cin >> ruserId;
+    cout << "\t\t\t Enter the password: ";
+    cin >> rpassWord;
+
+    ofstream f1("records.txt", ios::app); // will append input into file;
+    f1 << ruserId << ' ' << rpassWord;
+    system("cls");
+    cout << "\n\t\t\t Registration is successful! \n";
+    main();
+}
+
+void forgot()
+{
+    int option;
+    system("cls");
+    cout << "\t\t\t You forgot the password? No worries \n";
+    cout << "Press 1 to search for your id by username " << endl;
+    cout << "Press 2 to go back to the main menu " << endl;
+    cout << "\t\t\t Enter your choice: ";
+    cin >> option;
+    switch(option)
+    {
+        case 1:
+            {
+                int count = 0;
+                string suserId, sId, spass;
+                cout << "\n\t\t\t Enter the username you remember : ";
+                cin >> suserId;
+                ifstream f2("records.txt");
+                while(f2 >> sId >> spass)       //check inside records.txt
+                {
+                    if(sId == suserId)
+                    {
+                        count = 1;
+                    }
+                }
+                f2.close();
+                if(count == 1)
+                {
+                    cout << "\n\n Your account has been found! \n";
+                    cout << "\n\n Your password is " << spass;
+                    main();
+                }
+                else
+                {
+                    cout << "Sorry, your account has not been found.";
+                }
+            }
+        case 2:
+            {
+                main();
+            }
+        default:
+            cout << "\t\t\t Wrong choice! Please try again " << endl;
+            forgot();
+    }
+}
