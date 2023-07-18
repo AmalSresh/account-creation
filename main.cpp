@@ -1,3 +1,6 @@
+// Amal Suresh
+// account-creation
+// Code used from Simplilearn on YouTube
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -75,7 +78,7 @@ void login()
     else
     {
         cout << "\n LOGIN ERROR \n Please check your username and password \n";
-        
+       login(); 
     }
 
 }
